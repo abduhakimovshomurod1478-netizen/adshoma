@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>ELEKTRO CALC — Elektr hisob-kitoblari</title>
+<style>
+:root{--bg:#0b1220;--panel:#111c2f;--panel2:#16243a;--line:#293a52;--text:#edf4ff;--muted:#a8b7cd;--red:#ff453a;--cyan:#54d7e8;--green:#5ce0a0;--amber:#ffd166}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#1c3150 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{border-bottom:1px solid var(--line);background:#0b1220dd;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.top{max-width:1180px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.8px}.logo{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:var(--red);color:white;font-size:22px;box-shadow:0 8px 28px #ff453a38}.brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}.offline{font-size:12px;color:var(--green);border:1px solid #2d7358;padding:5px 9px;border-radius:99px}
+main{max-width:1180px;margin:auto;padding:30px 20px 55px}.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:stretch;margin-bottom:22px}.hero-copy,.hero-side,.panel,.metric{border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#142239,#101a2b)}.hero-copy{padding:28px}.eyebrow{color:var(--cyan);font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(30px,4.5vw,52px);line-height:1.03;letter-spacing:-1.6px;margin:12px 0}.hero h1 span{color:var(--red)}.hero p{color:var(--muted);max-width:640px;margin-bottom:0}.hero-side{padding:22px;display:flex;flex-direction:column;justify-content:center;gap:13px}.side-stat{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:11px}.side-stat:last-child{border:0;padding-bottom:0}.side-stat span{color:var(--muted)}.side-stat strong{font-size:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--line);background:#101a2b;color:var(--muted);border-radius:12px;padding:10px 13px;font-weight:750;cursor:pointer}.tab.active{background:var(--red);border-color:var(--red);color:white}.tab:hover{border-color:#7185a3}
+.panel{padding:23px;margin-bottom:18px}.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:20px}.panel h2{font-size:22px;margin:0 0 5px}.panel-head p{margin:0;color:var(--muted);font-size:13px}.tag{font-size:11px;border:1px solid var(--line);padding:5px 8px;border-radius:8px;color:var(--cyan);white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.field label{display:block;font-size:12px;color:var(--muted);margin:0 0 7px;font-weight:700}.field input,.field select{width:100%;padding:12px 12px;border-radius:11px;background:#0b1423;color:var(--text);border:1px solid #334762;outline:none;font:inherit}.field input:focus,.field select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #54d7e81c}.field .hint{font-size:11px;color:#8497b1;margin-top:5px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.btn{border:0;background:var(--red);color:#fff;padding:11px 16px;border-radius:11px;font-weight:800;cursor:pointer}.btn.secondary{background:#1b2a40;border:1px solid var(--line);color:var(--text)}.btn:hover{filter:brightness(1.08)}
+.results{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}.metric{padding:15px;border-radius:14px;background:#0d1727}.metric span{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}.metric strong{font-size:22px;letter-spacing:-.5px}.metric small{display:block;color:#8da1bc;font-size:11px;margin-top:4px}.result-note{margin-top:14px;border-left:3px solid var(--cyan);padding:10px 13px;background:#54d7e80d;border-radius:0 10px 10px 0;color:#c4d7ec;font-size:13px}.warn{border-left-color:var(--amber);background:#ffd1660c}.danger{border-left-color:var(--red);background:#ff453a0c}
+.hidden{display:none!important}.table-wrap{overflow:auto;margin-top:14px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.7px}
+footer{max-width:1180px;margin:auto;padding:0 20px 30px;color:#8294ad;font-size:12px}.footerline{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.disclaimer{padding:15px;border:1px solid #604c2b;border-radius:14px;background:#ffd1660a;color:#d9c9a6;font-size:12px;margin-top:18px}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.results{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-copy{padding:23px}.panel{padding:18px}}
+@media(max-width:520px){main{padding:20px 12px 38px}.top{padding:12px}.grid{grid-template-columns:1fr}.results{grid-template-columns:repeat(2,minmax(0,1fr))}.metric strong{font-size:19px}.panel-head{flex-direction:column}.offline{display:none}.tab{flex:1 1 calc(50% - 8px)}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand"><div class="logo">ϟ</div><div>ELEKTRO CALC<small>POWER • CABLE • PROTECTION</small></div></div><div class="offline">● OFFLINE ISHLAYDI</div></div></header>
+<main>
+<section class="hero">
+<div class="hero-copy"><div class="eyebrow">Elektr hisob-kitoblari platformasi</div><h1>Hisobla. Tekshir.<br><span>Xavfsiz tanla.</span></h1><p>Elektr ta’minoti bo‘yicha dastlabki hisob-kitoblar: quvvat, transformator, kabel, avtomat va kuchlanish yo‘qotilishi. Natijalarni loyiha me’yorlari bilan tekshiring.</p></div>
+<div class="hero-side"><div class="side-stat"><span>Hisoblash rejimi</span><strong>1 / 3 faza</strong></div><div class="side-stat"><span>Asosiy vositalar</span><strong>5 kalkulyator</strong></div><div class="side-stat"><span>Ulanish</span><strong>Talab qilinmaydi</strong></div></div>
+</section>
+<nav class="tabs" aria-label="Kalkulyatorlar">
+<button class="tab active" data-tab="power">⚡ Quvvat</button><button class="tab" data-tab="transformer">▤ Transformator</button><button class="tab" data-tab="cable">⌁ Kabel va avtomat</button><button class="tab" data-tab="drop">↘ Kuchlanish yo‘qotilishi</button><button class="tab" data-tab="guide">ⓘ Qo‘llanma</button>
+</nav>
+<section id="power" class="panel tab-content">
+<div class="panel-head"><div><h2>Quvvat kalkulyatori</h2><p>Faol quvvat, tok, to‘la va reaktiv quvvatni hisoblash.</p></div><div class="tag">01 / POWER</div></div>
+<div class="grid">
+<div class="field"><label for="pPhase">Tarmoq turi</label><select id="pPhase"><option value="3">Uch fazali (3~)</option><option value="1">Bir fazali (1~)</option></select></div>
+<div class="field"><label for="pMode">Kiritiladigan kattalik</label><select id="pMode"><option value="p">Faol quvvat P</option><option value="i">Tok I</option><option value="s">To‘la quvvat S</option></select></div>
+<div class="field"><label for="pValue">Qiymat</label><input id="pValue" type="number" min="0" step="any" value="40"></div>
+<div class="field"><label for="pUnit">Qiymat birligi</label><select id="pUnit"><option value="kw">kW</option><option value="mw">MW</option><option value="a">A</option><option value="ka">kA</option><option value="kva">kVA</option><option value="mva">MVA</option></select></div>
+<div class="field"><label for="pVoltage">Liniya kuchlanishi (V)</label><input id="pVoltage" type="number" min="1" value="400"></div>
+<div class="field"><label for="pCos">Quvvat koeffitsiyenti cos φ</label><input id="pCos" type="number" min="0.01" max="1" step="0.01" value="0.9"></div>
+</div>
+<div class="actions"><button class="btn" onclick="calcPower()">Hisoblash</button><button class="btn secondary" onclick="resetPower()">Qayta tiklash</button></div>
+<div id="powerResults" class="results"></div><div id="powerNote" class="result-note">Qiymatlarni kiriting va hisoblang.</div>
+</section>
+<section id="transformer" class="panel tab-content hidden">
+<div class="panel-head"><div><h2>Transformator tanlash</h2><p>Yuklama, cos φ va zaxira koeffitsiyenti bo‘yicha tavsiya etiladigan nominal quvvat.</p></div><div class="tag">02 / TRANSFORMER</div></div>
+<div class="grid">
+<div class="field"><label for="tP">Faol yuklama P (kW)</label><input id="tP" type="number" min="0" step="any" value="850"></div>
+<div class="field"><label for="tCos">Quvvat koeffitsiyenti cos φ</label><input id="tCos" type="number" min="0.01" max="1" step="0.01" value="0.9"></div>
+<div class="field"><label for="tReserve">Zaxira koeffitsiyenti</label><select id="tReserve"><option value="1.1">1.10 — 10% zaxira</option><option value="1.15" selected>1.15 — 15% zaxira</option><option value="1.2">1.20 — 20% zaxira</option><option value="1.25">1.25 — 25% zaxira</option></select></div>
+<div class="field"><label for="tCount">Bir xil transformatorlar soni</label><select id="tCount"><option value="1">1 ta</option><option value="2">2 ta (yuklama bo‘linadi)</option><option value="3">3 ta (yuklama bo‘linadi)</option></select></div>
+<div class="field"><label for="tClass">Ishonchlilik toifasi</label><select id="tClass"><option value="1">I toifa</option><option value="2" selected>II toifa</option><option value="3">III toifa</option></select></div>
+<div class="field"><label for="tLoad">Yuklama turi</label><select id="tLoad"><option value="mixed">Aralash yuklama</option><option value="motor">Motorlar ko‘p</option><option value="nonlinear">Elektronika / garmonikalar ko‘p</option></select></div>
+</div>
+<div class="actions"><button class="btn" onclick="calcTransformer()">Transformatorni hisoblash</button></div>
+<div id="transformerResults" class="results"></div><div id="transformerNote" class="result-note">Bu dastlabki quvvat tanlovi; qisqa tutashuv, ishga tushish toki, sovitish va N−1 rejimi alohida tekshiriladi.</div>
+</section>
+<section id="cable" class="panel tab-content hidden">
+<div class="panel-head"><div><h2>Kabel va avtomat tanlash</h2><p>Yuklama tokini hisoblang va dastlabki kabel kesimini solishtiring.</p></div><div class="tag">03 / CABLE</div></div>
+<div class="grid">
+<div class="field"><label for="cPhase">Tarmoq turi</label><select id="cPhase"><option value="3">Uch fazali</option><option value="1">Bir fazali</option></select></div>
+<div class="field"><label for="cP">Faol quvvat P (kW)</label><input id="cP" type="number" min="0" step="any" value="15"></div>
+<div class="field"><label for="cV">Kuchlanish (V)</label><input id="cV" type="number" min="1" value="400"></div>
+<div class="field"><label for="cCos">cos φ</label><input id="cCos" type="number" min="0.01" max="1" step="0.01" value="0.9"></div>
+<div class="field"><label for="cMaterial">O‘tkazgich materiali</label><select id="cMaterial"><option value="cu">Mis (Cu)</option><option value="al">Alyuminiy (Al)</option></select></div>
+<div class="field"><label for="cMethod">Yotqizish sharoiti</label><select id="cMethod"><option value="air">Ochiq havoda / lotokda</option><option value="pipe">Quvur ichida</option><option value="ground">Tuproqda</option></select></div>
+<div class="field"><label for="cLength">Kabel uzunligi (m)</label><input id="cLength" type="number" min="0" value="50"></div>
+<div class="field"><label for="cReserve">Tok bo‘yicha zaxira</label><select id="cReserve"><option value="1.1">10%</option><option value="1.25" selected>25%</option><option value="1.4">40%</option></select></div>
+<div class="field"><label for="cBreaker">Avtomat turi</label><select id="cBreaker"><option value="B">B xarakteristika</option><option value="C" selected>C xarakteristika</option><option value="D">D xarakteristika</option></select></div>
+</div>
+<div class="actions"><button class="btn" onclick="calcCable()">Hisoblash</button></div>
+<div id="cableResults" class="results"></div><div id="cableNote" class="result-note warn">Kabel tok jadvali taxminiydir. Haqiqiy kesim uchun izolyatsiya harorati, guruhlash, muhit, yotqizish usuli, qisqa tutashuv va mahalliy standartlar tekshiriladi.</div>
+<div class="table-wrap"><table><thead><tr><th>Kesim, mm²</th><th>Cu — taxminiy A</th><th>Al — taxminiy A</th></tr></thead><tbody id="ampacityTable"></tbody></table></div>
+</section>
+<section id="drop" class="panel tab-content hidden">
+<div class="panel-head"><div><h2>Kuchlanish yo‘qotilishi</h2><p>Kabeldagi taxminiy ΔU va foiz yo‘qotilishini baholash.</p></div><div class="tag">04 / VOLTAGE DROP</div></div>
+<div class="grid">
+<div class="field"><label for="dPhase">Tarmoq turi</label><select id="dPhase"><option value="3">Uch fazali</option><option value="1">Bir fazali</option></select></div>
+<div class="field"><label for="dCurrent">Tok I (A)</label><input id="dCurrent" type="number" min="0" step="any" value="32"></div>
+<div class="field"><label for="dVoltage">Nominal kuchlanish (V)</label><input id="dVoltage" type="number" min="1" value="400"></div>
+<div class="field"><label for="dLength">Bir tomonga uzunlik (m)</label><input id="dLength" type="number" min="0" value="60"></div>
+<div class="field"><label for="dArea">Kabel kesimi (mm²)</label><select id="dArea"><option>1.5</option><option>2.5</option><option>4</option><option>6</option><option>10</option><option>16</option><option>25</option><option>35</option><option>50</option><option>70</option><option>95</option><option>120</option><option>150</option><option>185</option><option>240</option></select></div>
+<div class="field"><label for="dMaterial">O‘tkazgich materiali</label><select id="dMaterial"><option value="cu">Mis (Cu)</option><option value="al">Alyuminiy (Al)</option></select></div>
+<div class="field"><label for="dCos">cos φ</label><input id="dCos" type="number" min="0.01" max="1" step="0.01" value="0.9"></div>
+<div class="field"><label for="dTemp">Harorat tuzatishi</label><select id="dTemp"><option value="1">20°C ga yaqin (1.00)</option><option value="1.08" selected>Ishchi harorat (×1.08)</option><option value="1.15">Yuqori harorat (×1.15)</option></select></div>
+</div>
+<div class="actions"><button class="btn" onclick="calcDrop()">Yo‘qotilishni hisoblash</button></div>
+<div id="dropResults" class="results"></div><div id="dropNote" class="result-note">Natija soddalashtirilgan rezistiv modelga asoslanadi; uzun liniyalarda reaktans va haqiqiy ish harorati ham hisobga olinishi lozim.</div>
+</section>
+<section id="guide" class="panel tab-content hidden">
+<div class="panel-head"><div><h2>Qo‘llanma va formulalar</h2><p>Hisob-kitoblar qanday ishlashi va natijalarni qanday talqin qilish.</p></div><div class="tag">05 / GUIDE</div></div>
+<h3>Asosiy formulalar</h3>
+<div class="table-wrap"><table><thead><tr><th>Kattalik</th><th>Uch fazali</th><th>Bir fazali</th></tr></thead><tbody>
+<tr><td>Faol quvvat</td><td>P = √3 × U × I × cos φ</td><td>P = U × I × cos φ</td></tr>
+<tr><td>To‘la quvvat</td><td>S = √3 × U × I</td><td>S = U × I</td></tr>
+<tr><td>Transformator yuklamasi</td><td>S ≈ P / cos φ</td><td>—</td></tr>
+<tr><td>Uch fazali ΔU (soddalashtirilgan)</td><td>√3 × I × ρ × L / A</td><td>2 × I × ρ × L / A</td></tr>
+</tbody></table></div>
+<h3>Amaliy tekshiruv ro‘yxati</h3>
+<ul>
+<li>Yuklamaning maksimal va bir vaqtdagi quvvatini aniqlang.</li><li>Motorlarning ishga tushish toki va garmonikalarni baholang.</li><li>Kabelning tok ko‘tarish qobiliyatini real yotqizish sharoitiga mos jadvaldan oling.</li><li>Avtomatning nominal toki, xarakteristikasi, uzish qobiliyati va selektivligini tekshiring.</li><li>Kuchlanish yo‘qotilishi bilan birga qisqa tutashuvda avtomatik uzish shartini tekshiring.</li><li>I toifali iste’molchilarda zaxira ta’minoti va avariya rejimini alohida loyihalang.</li>
+</ul>
+<div class="result-note warn">Muhim: ushbu veb-ilova dastlabki muhandislik bahosi uchun. U elektr loyihasi, amaldagi O‘z DSt / IEC talablari yoki malakali mutaxassis tekshiruvining o‘rnini bosmaydi. Kabel va himoya apparati yakuniy tanlovi joydagi sharoitlar asosida bajariladi.</div>
+</section>
+<div class="disclaimer"><strong>Texnik eslatma:</strong> avtomatik tanlov tavsiya xarakteriga ega. Real qurilmaga ulashdan oldin hisob-kitobni amaldagi me’yorlar, ishlab chiqaruvchi jadvallari va mutaxassis bilan tasdiqlang.</div>
+</main>
+<footer><div class="footerline"><span>© ELEKTRO CALC · Elektr ta’minoti uchun yordamchi vosita</span><span>Versiya 2.0 · Bitta HTML fayl · Offline</span></div></footer>
+<script>
+const $=id=>document.getElementById(id), fmt=(n,d=2)=>Number.isFinite(n)?n.toLocaleString('uz-UZ',{maximumFractionDigits:d,minimumFractionDigits:0}):'—';
+function metric(label,value,unit='',small=''){return `<div class="metric"><span>${label}</span><strong>${value}</strong><small>${unit}${small?' · '+small:''}</small></div>`}
+function note(id,msg,cls=''){const el=$(id);el.className='result-note '+cls;el.textContent=msg}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.tab-content').forEach(x=>x.classList.toggle('hidden',x.id!==b.dataset.tab));}));
+function calcPower(){let phase=+$('pPhase').value,mode=$('pMode').value,v=+$('pVoltage').value,cos=+$('pCos').value,val=+$('pValue').value,unit=$('pUnit').value;if(!(v>0&&cos>0&&cos<=1&&val>0)){note('powerNote','Iltimos, musbat qiymat kiriting va cos φ 0 dan katta, 1 dan kichik yoki teng bo‘lsin.','warn');return}
+let root=phase===3?Math.sqrt(3):1,P,I,S;if(mode==='p'){P=val*(unit==='mw'?1000000:1000);I=P/(root*v*cos);S=P/(cos*1000)}else if(mode==='i'){I=val*(unit==='ka'?1000:1);S=root*v*I/1000;P=S*cos*1000}else{S=val*(unit==='mva'?1000:1);I=S*1000/(root*v);P=S*cos*1000}let Q=Math.sqrt(Math.max(0,S*S-(P/1000)**2));$('powerResults').innerHTML=metric('Faol quvvat P',fmt(P/1000),'kW',fmt(P/1e6)+' MW')+metric('Tok I',fmt(I),'A',fmt(I/1000,3)+' kA')+metric('To‘la quvvat S',fmt(S),'kVA',fmt(S/1000)+' MVA')+metric('Reaktiv quvvat Q',fmt(Q),'kVAr','hisoblangan');note('powerNote',`Hisoblash ${phase===3?'uch fazali':'bir fazali'} tarmoq uchun bajarildi. U = ${fmt(v)} V, cos φ = ${fmt(cos,3)}. Fazalar muvozanatli deb qabul qilindi.`)}
+function resetPower(){$('pPhase').value='3';$('pMode').value='p';$('pValue').value='40';$('pUnit').value='kw';$('pVoltage').value='400';$('pCos').value='.9';calcPower()}
+const standards=[10,16,25,40,63,100,160,250,400,630,1000,1250,1600,2000,2500,3150,4000,5000,6300];
+function calcTransformer(){let p=+$('tP').value,c=+$('tCos').value,r=+$('tReserve').value,n=+$('tCount').value,cat=$('tClass').value,load=$('tLoad').value;if(!(p>0&&c>0&&c<=1)){note('transformerNote','Faol quvvat musbat, cos φ esa 0 dan katta va 1 dan kichik yoki teng bo‘lishi kerak.','warn');return}let s=p/c*r,per=s/n,standard=standards.find(x=>x>=per)||Math.ceil(per/1000)*1000,parallel=standard*n;let extra=cat==='1'?'I toifa: ikki mustaqil manba va avariya rejimi talablarini tekshiring.':cat==='2'?'II toifa: zaxira ta’minoti va tiklash vaqti talablarini tekshiring.':'III toifa: yuklama uzilishiga qo‘yilgan talablarni tekshiring.';let warning=load==='motor'?'Motorlarning ishga tushish toki va kuchlanish cho‘kishini tekshiring.':load==='nonlinear'?'Garmonikalar, neytral tok va transformatorning derating talablarini tekshiring.':'Yuklama grafigi, quvvat koeffitsiyenti va bir vaqtdalikni tekshiring.';$('transformerResults').innerHTML=metric('Hisobiy S',fmt(p/c),'kVA','P / cos φ')+metric('Zaxira bilan S',fmt(s),'kVA',fmt(r*100-100)+'% zaxira')+metric('Har bir transformator',fmt(standard),'kVA',n+' ta birlik')+metric('Jami nominal quvvat',fmt(parallel),'kVA','dastlabki tanlov');note('transformerNote',`Dastlabki tanlov: ${n} × ${fmt(standard)} kVA. ${extra} ${warning}`,'warn')}
+const areas=[1.5,2.5,4,6,10,16,25,35,50,70,95,120,150,185,240];
+const baseCu=[15,21,28,36,50,68,89,110,134,171,207,239,275,314,370];
+const methodFactor={air:1,pipe:.78,ground:.9};
+function amp(area,mat,method){let idx=areas.indexOf(area);return (mat==='cu'?baseCu[idx]:baseCu[idx]*.78)*methodFactor[method]}
+function calcCable(){let ph=+$('cPhase').value,p=+$('cP').value,v=+$('cV').value,c=+$('cCos').value,mat=$('cMaterial').value,method=$('cMethod').value,len=+$('cLength').value,res=+$('cReserve').value;if(!(p>0&&v>0&&c>0&&c<=1&&len>=0)){note('cableNote','Qiymatlarni tekshiring: P va kuchlanish musbat, cos φ 0 dan katta va 1 dan kichik yoki teng bo‘lsin.','warn');return}let current=p*1000/((ph===3?Math.sqrt(3):1)*v*c),design=current*res,area=areas.find(a=>amp(a,mat,method)>=design),breaker=[6,10,16,20,25,32,40,50,63,80,100,125,160,200,250,315,400,500,630].find(a=>a>=current);let cap=area?amp(area,mat,method):null;let warn=area?`Dastlabki tavsiya: ${mat==='cu'?'mis':'alyuminiy'} ${area} mm²; taxminiy ruxsat etilgan tok ${fmt(cap)} A. Avtomat nominali kabelning haqiqiy ruxsat etilgan tokidan katta bo‘lmasligi kerak.`:'Hisobiy tok uchun bu soddalashtirilgan jadvalda mos kesim topilmadi; kattaroq kesim yoki parallel kabelni muhandis hisoblasin.';$('cableResults').innerHTML=metric('Hisobiy tok',fmt(current),'A','yuklama toki')+metric('Zaxira bilan tok',fmt(design),'A',fmt((res-1)*100)+'% zaxira')+metric('Dastlabki kesim',area?fmt(area):'Tekshirish','mm²',mat==='cu'?'Cu':'Al')+metric('Avtomat uchun boshlang‘ich qiymat',breaker?fmt(breaker):'Tekshirish','A',`xarakteristika ${$('cBreaker').value}`);note('cableNote',warn+' Uzunlik: '+fmt(len)+' m. Yakuniy avtomat tanlovi qisqa tutashuv toki, ishga tushish toki va uzish qobiliyatiga bog‘liq.','warn');$('ampacityTable').innerHTML=areas.map((a,i)=>`<tr><td>${a}</td><td>${baseCu[i]}</td><td>${fmt(baseCu[i]*.78,0)}</td></tr>`).join('')}
+function calcDrop(){let ph=+$('dPhase').value,I=+$('dCurrent').value,V=+$('dVoltage').value,L=+$('dLength').value,A=+$('dArea').value,mat=$('dMaterial').value,cos=+$('dCos').value,temp=+$('dTemp').value;if(!(I>=0&&V>0&&L>=0&&A>0&&cos>0&&cos<=1)){note('dropNote','Kiritilgan qiymatlarni tekshiring.','warn');return}let rho=(mat==='cu'?.0175:.0282)*temp;let dU=(ph===3?Math.sqrt(3):2)*I*rho*L/A;let pct=dU/V*100,recv=V-dU;let cls=pct<=3?'':pct<=5?'warn':'danger';$('dropResults').innerHTML=metric('Kuchlanish yo‘qotilishi ΔU',fmt(dU),'V','soddalashtirilgan')+metric('Yo‘qotilish',fmt(pct),'%','nominalga nisbatan')+metric('Taxminiy oxirgi U',fmt(recv),'V','ΔU ayirilgan')+metric('Baholash',pct<=3?'Yaxshi':pct<=5?'Tekshirish':'Yuqori','',pct<=3?'≤ 3%':pct<=5?'3–5%':'> 5%');note('dropNote',`Hisobiy ΔU ≈ ${fmt(dU)} V (${fmt(pct)}%). Bu taxminiy rezistiv baho. Ruxsat etilgan chegara tarmoq, iste’molchi va standart talabiga qarab tekshiriladi.`,cls)}
+$('pMode').addEventListener('change',()=>{let m=$('pMode').value,unit=$('pUnit');unit.value=m==='p'?'kw':m==='i'?'a':'kva';$('pValue').value=m==='p'?40:m==='i'?60:40});
+calcPower();calcTransformer();calcCable();calcDrop();
+</script>
+</body>
+</html>
